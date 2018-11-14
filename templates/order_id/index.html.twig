@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Телефон</th>
+        <td>{{ order.phone }}</td>
+      </tr>
+
+      <tr>
+        <th>Промокод</th>
+        <td>{{ order.promo }}</td>
+      </tr>
+
+      <tr>
+        <th>Откуда забрать вещи</th>
+        <td>
+          <b>Улица: </b>{{ order.address.to.street }} <br />
+          <b>Кв/офис: </b>{{ order.address.to.corp }} <br />
+          <b>Подъезд: </b>{{ order.address.to.intercom }} <br />
+          <b>Этаж: </b>{{ order.address.to.floor }} <br />
+          <b>Домофон: </b>{{ order.address.to.enteranse }} <br />
+        </td>
+      </tr>
+
+      <tr>
+        <th>Куда вернуть вещи</th>
+        <td>
+          <b>Улица: </b>{{ order.address.form.street }} <br />
+          <b>Кв/офис: </b>{{ order.address.form.corp }} <br />
+          <b>Подъезд: </b>{{ order.address.form.intercom }} <br />
+          <b>Этаж: </b>{{ order.address.form.floor }} <br />
+          <b>Домофон: </b>{{ order.address.form.enteranse }} <br />
+        </td>
+      </tr>
+
+      <tr>
+        <th>Когда забрать</th>
+        <td>{{ order.date_get.time }}</td>
+      </tr>
+
+      <tr>
+        <th>Когда вернуть</th>
+        <td>{{ order.date_return.time }}</td>
+      </tr>
+
+      <tr>
+        <th>Экспресс чистка</th>
+        <td>{{ order.express ? "Да" : "Нет" }}</td>
+      </tr>
+
+      <tr>
+        <th>Комментарий</th>
+        <td>{{ order.comment }}</td>
+      </tr>
+
+      <tr>
+        <th>Забрать в течении часа</th>
+        <td>{{ order.urgency ? "Да" : "Нет" }}</td>
+      </tr>
+     </tbody>
+  </table>
+  <h2>Вещи</h2>
+  <ul class="list-group">
+    {% for item in order.goods %}
+    <li class="list-group-item">{{ item.good.title }} в количестве {{ item.amount }} шт. - <b>{{ item.good.price * item.amount }} руб.</b></li>
+    {% endfor %}
+    <li class="list-group-item list-group-item-secondary">Общая стоимость: <b>{{ order.sum }} руб.</b></li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{ asset('../templates/order/index.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block title %}Заказы{% endblock %}
+{% block activeLinkOrder %}active{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Номер заказа</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Когда забрать</th>
+            <th scope="col">Когда вернуть</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in orders_array.order %}
+          <tr>
+            <th scope="row">{{ item.order.id }}</th>
+            <td>{{ item.order.phone }}</td>
+            <td>{{ item.order.address.to.street }}, {{ item.order.address.to.corp }}, {{ item.order.address.to.intercom }}, {{ item.order.address.to.floor }}, {{ item.order.address.to.enteranse }} </td>
+            <td>{{ item.order.date_get.date }} {{ item.order.date_get.time }}</td>
+            <td>{{ item.order.date_return.date }} {{ item.order.date_return.time }}</td>
+            <td>2 500</td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary">Новый</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Новый</a></li>
+                  <li><a href="#">Принятый</a></li>
+                  <li><a href="#">Завершенный</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('../templates/order/index.js') }}"></script>
+{% endblock %}

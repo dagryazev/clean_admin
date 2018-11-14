@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+<form action="/public/action" method=GET>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Название</th>
+      <td><input type=text name="title" value="{{ category_array.title }}" placeholder="Название"/></td>
+    </tr>
+
+    <tr>
+      <th>Описание</th>
+      <td><input type=text name="description" value="{{ category_array.description }}" placeholder="Описание"/></td>
+    </tr>
+
+   </tbody>
+   <tfoot>
+     <tr>
+       <td colspan="2"><input type=submit value="Сохранить" /></td>
+     </tr>
+   </tfoot>
+</table>
+<input type=hidden name=id value="{{ category_array.id }}" />
+<input type=hidden name=type value="updatecategory" />
+</form>
+{% endblock %}

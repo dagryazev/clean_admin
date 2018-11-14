@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+<form action="/public/action/" method="GET">
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Название</th>
+      <td><input type=text name="title" value="{{ goods_array.title }}" placeholder="Название"/></td>
+    </tr>
+
+    <tr>
+      <th>Категория</th>
+      <td>
+        <select name="category" />
+        {% for item in category_array %}
+          <option value="{{item.id}}" {% if goods_array.category == item.id %} selected=selected {% endif %}>{{ item.title }}</option>
+        {% endfor %}
+        </select>
+      </td>
+
+    </tr>
+
+    <tr>
+      <th>Время чистки</th>
+      <td><input type=text name="time_clean" value="{{ goods_array.time_clean }}" placeholder="Время чистки"/></td>
+    </tr>
+
+    <tr>
+      <th>Цена</th>
+      <td><input type=text name="price" value="{{ goods_array.price }}" placeholder="Цена"/></td>
+    </tr>
+
+    <tr>
+      <th>Старая цена</th>
+      <td><input type=text name="old_price" value="{{ goods_array.old_price }}" placeholder="Старая цена"/></td>
+    </tr>
+
+    <tr>
+      <th>Ед. измерения</th>
+      <td><input type=text name="unit" value="{{ goods_array.unit }}" placeholder="Ед. измерения"/></td>
+    </tr>
+
+   </tbody>
+   <tfoot>
+     <tr>
+       <td colspan="2"><input type=submit value="Сохранить" /></td>
+     </tr>
+   </tfoot>
+</table>
+<input type=hidden name=id value="{{ goods_array.id }}" />
+<input type=hidden name=type value="updategood" />
+</form>
+{% endblock %}

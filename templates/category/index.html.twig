@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('../templates/category/index.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in category_array.category %}
+            <tr>
+              <th scope="row">{{ item.id }}</td>
+              <td> {{ item.title }} </td>
+              <td> {{ item.description }} </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('../templates/category/index.js') }}"></script>
+{% endblock %}
